@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using YmagiWebMvc.Models;
 using YmagiWebMvc.Data;
+using YmagiWebMvc.Services;
 
 namespace YmagiWebMvc
 {
@@ -42,6 +43,9 @@ namespace YmagiWebMvc
                         builder.MigrationsAssembly("YmagiWebMvc")));
 
             services.AddScoped<SeendingService>();
+
+            services.AddScoped<VoluntariosService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
