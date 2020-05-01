@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using YmagiWebMvc.Models;
+using YmagiWebMvc.Data;
 
 namespace YmagiWebMvc
 {
@@ -40,14 +41,16 @@ namespace YmagiWebMvc
                     options.UseMySql(Configuration.GetConnectionString("YmagiWebMvcContext"), builder =>
                         builder.MigrationsAssembly("YmagiWebMvc")));
 
+            services.AddScoped<SeendingService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, SeendingService seendingService)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                seendingService.Seed();
             }
             else
             {
