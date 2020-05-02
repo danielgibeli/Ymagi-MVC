@@ -1,6 +1,7 @@
 ﻿            using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace YmagiWebMvc.Models
@@ -9,11 +10,22 @@ namespace YmagiWebMvc.Models
     {
         public int Id { get; set; }
         public string Nome { get; set; }
+
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+
+        [DataType(DataType.PhoneNumber)]
         public double Celular { get; set; }
         public double Telefone { get; set; }
+
+        [Display(Name ="Data Nascimento")]
+        [DataType(DataType.Date)]
         public DateTime Nascimento { get; set; }
+
+        [Display(Name = "Organização Social")]
         public Osc Osc { get; set; }
+
+        [Display(Name = "Selecione uma Organização Social")]
         public int OscId { get; set; }
         public ICollection<Doacao> Doacoes { get; set; } = new List<Doacao  >();
 
