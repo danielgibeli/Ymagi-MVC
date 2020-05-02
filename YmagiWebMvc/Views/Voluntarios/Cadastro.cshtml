@@ -1,0 +1,44 @@
+﻿@model YmagiWebMvc.Models.Voluntario;
+
+@{
+    ViewData["Title"] = "Cadastro";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h4>Cadastro de Voluntários</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Cadastro">
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Celular" class="control-label"></label>
+                <input asp-for="Celular" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Telefone" class="control-label"></label>
+                <input asp-for="Telefone" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Nascimento" class="control-label"></label>
+                <input asp-for="Nascimento" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Osc" class="control-label"></label>
+                <input asp-for="Osc" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>

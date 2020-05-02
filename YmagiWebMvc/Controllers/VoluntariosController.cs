@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using YmagiWebMvc.Models;
 using YmagiWebMvc.Services;
 
 namespace YmagiWebMvc.Controllers
@@ -20,6 +21,20 @@ namespace YmagiWebMvc.Controllers
         {
             var list = _voluntariosService.FindAll();
             return View(list);
+        }
+
+        public IActionResult Cadastro()
+        {
+            return View();
+        }
+                                
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public IActionResult Cadastro(Voluntario voluntario)
+        {
+            _voluntariosService.Insert(voluntario);
+            return RedirectToAction(nameof(Index)); 
         }
     }
 }

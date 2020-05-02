@@ -19,5 +19,11 @@ namespace YmagiWebMvc.Services
         {
             return _context.Voluntario.ToList();
         }
+
+        public void Insert(Voluntario obj)
+        {
+            _context.Add(obj);
+            _context.SaveChanges();
+        }
     }
 }
