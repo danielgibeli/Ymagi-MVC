@@ -25,5 +25,17 @@ namespace YmagiWebMvc.Services
             _context.Add(obj);
             _context.SaveChanges();
         }
+
+        public Voluntario FindById(int id)
+        {
+            return _context.Voluntario.FirstOrDefault(obj => obj.Id == id);
+        }
+
+        public void Remove(int id)
+        {
+            var obj = _context.Voluntario.Find(id);
+            _context.Voluntario.Remove(obj);
+            _context.SaveChanges();
+        }
     }
 }
