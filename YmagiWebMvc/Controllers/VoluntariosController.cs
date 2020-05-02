@@ -5,16 +5,19 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using YmagiWebMvc.Models;
 using YmagiWebMvc.Services;
+using YmagiWebMvc.Models.ViewModels;
 
 namespace YmagiWebMvc.Controllers
 {
     public class VoluntariosController : Controller
     {
         private readonly VoluntariosService _voluntariosService;
+        private readonly OscService _oscService;
 
-        public VoluntariosController(VoluntariosService voluntariosService)
+        public VoluntariosController(VoluntariosService voluntariosService, OscService oscService)
         {
             _voluntariosService = voluntariosService;
+            _oscService = oscService;
         }
 
         public IActionResult Index()
@@ -25,7 +28,9 @@ namespace YmagiWebMvc.Controllers
 
         public IActionResult Cadastro()
         {
-            return View();
+            var oscs = _oscService.FindAll();
+            var viewModel = new OscFormViewModel { Oscs = oscs };
+            return View(viewModel);
         }
                                 
         [HttpPost]

@@ -1,4 +1,4 @@
-﻿using System;
+﻿            using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +14,7 @@ namespace YmagiWebMvc.Models
         public double Telefone { get; set; }
         public DateTime Nascimento { get; set; }
         public Osc Osc { get; set; }
+        public int OscId { get; set; }
         public ICollection<Doacao> Doacoes { get; set; } = new List<Doacao  >();
 
         public Voluntario()

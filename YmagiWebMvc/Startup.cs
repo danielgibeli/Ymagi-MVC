@@ -46,6 +46,8 @@ namespace YmagiWebMvc
 
             services.AddScoped<VoluntariosService>();
 
+            services.AddScoped<OscService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
