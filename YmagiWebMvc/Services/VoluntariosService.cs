@@ -4,6 +4,7 @@ using System.Linq;
 using YmagiWebMvc.Models;
 using Microsoft.EntityFrameworkCore;
 using YmagiWebMvc.Services.Exceptions;
+using System.Threading.Tasks;
 
 namespace YmagiWebMvc.Services
 {
@@ -16,39 +17,40 @@ namespace YmagiWebMvc.Services
             _context = context;
         }
 
-        public List<Voluntario> FindAll()
+        public async Task<List<Voluntario>> FindAllAsync()
         {
-            return _context.Voluntario.ToList();
+            return await _context.Voluntario.ToListAsync();
         }
 
-        public void Insert(Voluntario obj)
+        public async Task InsertAsync(Voluntario obj)
         {
             _context.Add(obj);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public Voluntario FindById(int id)
+        public async Task<Voluntario> FindByIdAsync(int id)
         {
-            return _context.Voluntario.Include(obj => obj.Osc).FirstOrDefault(obj => obj.Id == id);
+            return await _context.Voluntario.Include(obj => obj.Osc).FirstOrDefaultAsync(obj => obj.Id == id);
         }
 
-        public void Remove(int id)
+        public async Task RemoveAsync(int id)
         {
-            var obj = _context.Voluntario.Find(id);
+            var obj = await _context.Voluntario.FindAsync(id);
             _context.Voluntario.Remove(obj);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Update(Voluntario obj)
+        public async Task UpdateAsync(Voluntario obj)
         {
-            if (!_context.Voluntario.Any(x => x.Id == obj.Id))
+            bool hasAny = await _context.Voluntario.AnyAsync(x => x.Id == obj.Id);
+            if (!hasAny)
             {
                 throw new NotFoundException("Voluntário não encontrado");
             }
             try
             {
                 _context.Update(obj);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException e)
             {

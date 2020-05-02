@@ -1,4 +1,4 @@
-﻿@model  YmagiWebMvc.Models.ViewModels.OscFormViewModel
+﻿@model YmagiWebMvc.Models.ViewModels.OscFormViewModel
 @{
     ViewData["Title"] = "Editar";
 }
@@ -9,26 +9,31 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
-            <input type="hidden" asp-for="Voluntario.Id"/>
+            <input type="hidden" asp-for="Voluntario.Id" />
             <div class="form-group">
                 <label asp-for="Voluntario.Nome" class="control-label"></label>
                 <input asp-for="Voluntario.Nome" class="form-control" />
+                <span asp-validation-for="Voluntario.Nome" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Voluntario.Email" class="control-label"></label>
                 <input asp-for="Voluntario.Email" class="form-control" />
+                <span asp-validation-for="Voluntario.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Voluntario.Celular" class="control-label"></label>
                 <input asp-for="Voluntario.Celular" class="form-control" />
+                <span asp-validation-for="Voluntario.Celular" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Voluntario.Telefone" class="control-label"></label>
                 <input asp-for="Voluntario.Telefone" class="form-control" />
+                <span asp-validation-for="Voluntario.Telefone" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Voluntario.Nascimento" class="control-label"></label>
                 <input asp-for="Voluntario.Nascimento" class="form-control" />
+                <span asp-validation-for="Voluntario.Nascimento" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Voluntario.OscId" class="control-label"></label>
@@ -41,3 +46,7 @@
         </form>
     </div>
 </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

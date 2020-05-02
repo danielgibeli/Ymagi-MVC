@@ -9,15 +9,25 @@ namespace YmagiWebMvc.Models
     public class Voluntario
     {
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "{0} obrigatório")]
+        [StringLength(50, MinimumLength =3, ErrorMessage ="{0} deve conter no mínimo {2} caracteres!")]
         public string Nome { get; set; }
 
+        [Required(ErrorMessage = "{0} obrigatório")]
+        [EmailAddress(ErrorMessage = "{0} digite um email válido!")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
+        [Required(ErrorMessage = "{0} obrigatório")]
         [DataType(DataType.PhoneNumber)]
         public double Celular { get; set; }
+
+        [Required(ErrorMessage = "{0} obrigatório")]
+        [DataType(DataType.PhoneNumber)]
         public double Telefone { get; set; }
 
+        [Required(ErrorMessage = "{0} obrigatório")]
         [Display(Name ="Data Nascimento")]
         [DataType(DataType.Date)]
         public DateTime Nascimento { get; set; }

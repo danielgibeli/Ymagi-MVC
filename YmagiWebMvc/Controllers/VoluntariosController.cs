@@ -6,6 +6,7 @@ using YmagiWebMvc.Services;
 using YmagiWebMvc.Models.ViewModels;
 using YmagiWebMvc.Services.Exceptions;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace YmagiWebMvc.Controllers
 {
@@ -20,15 +21,15 @@ namespace YmagiWebMvc.Controllers
             _oscService = oscService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var list = _voluntariosService.FindAll();
+            var list = await _voluntariosService.FindAllAsync();
             return View(list);
         }
 
-        public IActionResult Cadastro()
+        public async Task<IActionResult> Cadastro()
         {
-            var oscs = _oscService.FindAll();
+            var oscs = await _oscService.FindAllAsync();
             var viewModel = new OscFormViewModel { Oscs = oscs };
             return View(viewModel);
         }
@@ -36,20 +37,27 @@ namespace YmagiWebMvc.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public IActionResult Cadastro(Voluntario voluntario)
+        public async Task<IActionResult> Cadastro(Voluntario voluntario)
         {
-            _voluntariosService.Insert(voluntario);
+            if (!ModelState.IsValid)
+            {
+                var osc = await _oscService.FindAllAsync();
+                var viewModel = new OscFormViewModel { Voluntario = voluntario, Oscs = osc };
+                return View(viewModel);
+            }                                                                                                                                           
+
+            await _voluntariosService.InsertAsync(voluntario);
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id não fornecido!" });
             }
 
-            var obj = _voluntariosService.FindById(id.Value);
+            var obj = await _voluntariosService.FindByIdAsync(id.Value);
             if (obj == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id não encontrado!" });
@@ -59,20 +67,20 @@ namespace YmagiWebMvc.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            _voluntariosService.Remove(id);
+            await _voluntariosService.RemoveAsync(id);
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Details(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id não fornecido!" });
             }
 
-            var obj = _voluntariosService.FindById(id.Value);
+            var obj = await _voluntariosService.FindByIdAsync(id.Value);
             if (obj == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id não encontrado!" });
@@ -80,35 +88,42 @@ namespace YmagiWebMvc.Controllers
 
             return View(obj);
         }
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id não fornecido!" });
             }
 
-            var obj = _voluntariosService.FindById(id.Value);
+            var obj = await _voluntariosService.FindByIdAsync(id.Value);
             if (obj == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id não encontrado!" });
             }
 
-            List<Osc> osc = _oscService.FindAll();
+            List<Osc> osc = await _oscService.FindAllAsync();
             OscFormViewModel viewModel = new OscFormViewModel { Voluntario = obj, Oscs = osc };
             return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, Voluntario voluntario)
+        public async Task<IActionResult> Edit(int id, Voluntario voluntario)
         {
+            if (!ModelState.IsValid)
+            {
+                var osc = await _oscService.FindAllAsync();
+                var viewModel = new OscFormViewModel { Voluntario = voluntario, Oscs = osc };
+                return View(viewModel);
+            }
+
             if (id != voluntario.Id)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id não corresponde!" });
             }
             try
             {
-                _voluntariosService.Update(voluntario);
+                await _voluntariosService.UpdateAsync(voluntario);
                 return RedirectToAction(nameof(Index));
             }
             catch (ApplicationException e)
