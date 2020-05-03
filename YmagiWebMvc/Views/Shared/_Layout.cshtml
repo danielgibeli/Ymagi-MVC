@@ -3,8 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - YmagiWebMvc</title>
-
+    <title>@ViewData["Title"] - Ymagi</title>
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-united.css" />
         <link rel="stylesheet" href="~/css/site.css" />
@@ -26,23 +25,21 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">YmagiWebMvc</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Ymagi</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Oscs" asp-action="Index">Oscs</a></li>
                     <li><a asp-area="" asp-controller="Voluntarios" asp-action="Index">Voluntarios</a></li>
+                    <li><a asp-area="" asp-controller="Usuarios" asp-action="Index">Usuários</a></li>
+                    <li><a asp-area="" asp-controller="Insumos" asp-action="Index">Insumos</a></li>
                     <li><a asp-area="" asp-controller="Doacaos" asp-action="Index">Doações</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Suporte</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-
     <partial name="_CookieConsentPartial" />
-
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -50,7 +47,6 @@
             <p>&copy; 2020 - YmagiWebMvc</p>
         </footer>
     </div>
-
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
@@ -71,7 +67,6 @@
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
-
     @RenderSection("Scripts", required: false)
 </body>
 </html>

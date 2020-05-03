@@ -33,5 +33,24 @@ namespace YmagiWebMvc.Services
                 .OrderByDescending(x => x.Data)
                 .ToListAsync();
         }
+
+        public async Task<List<IGrouping<Osc, Doacao>>> FindByDateGrupoAsync(DateTime? minDate, DateTime? maxDate)
+        {
+            var result = from obj in _context.Doacao select obj;
+            if (minDate.HasValue)
+            {
+                result = result.Where(x => x.Data >= minDate.Value);
+            }
+            if (maxDate.HasValue)
+            {
+                result = result.Where(x => x.Data <= maxDate.Value);
+            }
+            return await result
+                .Include(x => x.Voluntario)
+                .Include(x => x.Voluntario.Osc)
+                .OrderByDescending(x => x.Data)
+                .GroupBy(x => x.Voluntario.Osc)
+                .ToListAsync();
+        }
     }
 }

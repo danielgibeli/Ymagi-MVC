@@ -37,13 +37,17 @@ namespace YmagiWebMvc.Models
 
         [Display(Name = "Selecione uma Organização Social")]
         public int OscId { get; set; }
-        public ICollection<Doacao> Doacoes { get; set; } = new List<Doacao  >();
+
+        public ICollection<Doacao> Doacoes { get; set; } = new List<Doacao>();
+
+        public ICollection<Insumo> Insumos { get; set; } = new List<Insumo>(); 
 
         public Voluntario()
         {
         }
 
-        public Voluntario(int id, string nome, string email, double celular, double telefone, DateTime nascimento, Osc osc)
+        public Voluntario(int id, string nome, string email, double celular, double telefone, 
+            DateTime nascimento, Osc osc)
         {
             Id = id;
             Nome = nome;
@@ -59,14 +63,30 @@ namespace YmagiWebMvc.Models
             Doacoes.Add(doa);
         }
 
+        public void AdInsumo(Insumo insumo)
+        {
+            Insumos.Add(insumo);
+        }
+
         public void ReDoacao(Doacao doa)
         {
             Doacoes.Remove(doa);
         }
 
+        public void ReInsumo(Insumo insumo)
+        {
+            Insumos.Remove(insumo);
+        }
+
         public double TotalDoacoes(DateTime inicial, DateTime final)
         {
             return Doacoes.Where(doa => doa.Data >= inicial && doa.Data <= final).Sum(doa => doa.Total);
+        }
+
+        public double TotalInsumos(DateTime inicial, DateTime final)
+        {
+
+            return Insumos.Where(ins => ins.Date >= inicial && ins.Date <= final).Sum(ins => ins.SaldoEstoque);
         }
     }
 }

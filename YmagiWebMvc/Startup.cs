@@ -52,12 +52,13 @@ namespace YmagiWebMvc
 
             services.AddScoped<DoacaosService>();
 
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, SeendingService seendingService)
         {
-                var Br = new CultureInfo("pt-BR");
+            var Br = new CultureInfo("pt-BR");
             var localizationOptions = new RequestLocalizationOptions
             {
                 DefaultRequestCulture = new RequestCulture(Br),
