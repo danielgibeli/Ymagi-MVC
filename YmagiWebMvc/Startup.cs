@@ -50,6 +50,8 @@ namespace YmagiWebMvc
 
             services.AddScoped<OscService>();
 
+            services.AddScoped<DoacaosService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

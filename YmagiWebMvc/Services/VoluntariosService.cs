@@ -35,9 +35,16 @@ namespace YmagiWebMvc.Services
 
         public async Task RemoveAsync(int id)
         {
-            var obj = await _context.Voluntario.FindAsync(id);
-            _context.Voluntario.Remove(obj);
-            await _context.SaveChangesAsync();
+            try
+            {
+                var obj = await _context.Voluntario.FindAsync(id);
+                _context.Voluntario.Remove(obj);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                throw new IntegrityException("O voluntário não pode ser excluido, porque ele fez doações!");
+            }
         }
 
         public async Task UpdateAsync(Voluntario obj)
