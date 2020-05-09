@@ -2,19 +2,24 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-
+using System.Threading.Tasks;
 
 namespace YmagiWebMvc.Models
 {
-    public class Osc
+    public class Fornecedor
     {
         public int Id { get; set; }
+
+        public Voluntario Voluntario { get; set; }
 
         [Display(Name = "Razão Social")]
         public string RazaoSocial { get; set; }
 
         [Display(Name = "Nome Fantasia")]
         public string NomeFantasia { get; set; }
+
+        [Display(Name = "CNPJ")]
+        public string Cnpj { get; set; }
 
         [Display(Name = "Endereço: Rua, Avenida, etc...")]
         public string Endereço { get; set; }
@@ -38,19 +43,23 @@ namespace YmagiWebMvc.Models
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Display(Name = "Voluntários")]
-        public ICollection<Voluntario> Voluntarios { get; set; } = new List<Voluntario>();
+        [Display(Name = "Fornecedores")]
+        public ICollection<Fornecedor> Fornecedores { get; set; } = new List<Fornecedor>();
 
-        public Osc()
+        public Fornecedor()
         {
         }
 
-        public Osc(int id, string razaoSocial, string nomeFantasia, string endereço, int numero, 
-            string complemento, string bairro, string cidade, string estado, string contato, string telefone, string email)
+        public Fornecedor(int id, Voluntario voluntario,string razaoSocial, string nomeFantasia,
+            string cnpj, string endereço, int numero, string complemento,
+            string bairro, string cidade, string estado, string contato,
+            string telefone, string email)
         {
             Id = id;
+            Voluntario = voluntario;
             RazaoSocial = razaoSocial;
             NomeFantasia = nomeFantasia;
+            Cnpj = cnpj;
             Endereço = endereço;
             Numero = numero;
             Complemento = complemento;
@@ -60,21 +69,6 @@ namespace YmagiWebMvc.Models
             Contato = contato;
             Telefone = telefone;
             Email = email;
-        }
-
-        public void AddVoluntario(Voluntario voluntario)
-        {
-            Voluntarios.Add(voluntario);
-        }
-
-        public void RemVoluntario(Voluntario voluntario)
-        {
-            Voluntarios.Remove(voluntario);
-        }
-
-        public double TotalDoacoes(DateTime inicial, DateTime final)
-        {
-            return Voluntarios.Sum(Voluntarios => Voluntarios.TotalDoacoes(inicial, final));
         }
     }
 }

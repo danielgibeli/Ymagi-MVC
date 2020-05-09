@@ -25,13 +25,12 @@ namespace YmagiWebMvc.Data
                 return; //DB já foi populado
             }
 
-            Osc o1 = new Osc(1, "Resolvi Mudar", "Resolvi Mudar Ltda", "Campos Eliseos", "Paula", "39692429", "paula@resolv");
-            Osc o2 = new Osc(2, "Cantinho Ceu", "Cantinho Ltda", "Centro", "Andre", "63632524", "andre@gmail");
-            Osc o3 = new Osc(3, "Casa do Vovo", "Casa Ltda", "Ipiranga", "Bob", "36352428", "bob@hotmail");
+            Osc o1 = new Osc(1, "Resolvi Mudar", "Resolvi Mudar Ltda", "rio de janeiro", 1111, "casa", "Campos Eliseos",
+                "ribeirao","sp", "Paula", "39692429", "paula@resolv");
 
 
-            Voluntario v1 = new Voluntario(1, "Daniel", "daniel@gibeli", 1125000, 50002, new DateTime(1984, 10, 03), o2);
-            Voluntario v2 = new Voluntario(2, "Giseli", "giseli@sebsa", 256330, 0201011, new DateTime(1980, 05, 10), o3);
+            Voluntario v1 = new Voluntario(1, "Daniel", "daniel@gibeli", 1125000, 50002, new DateTime(1984, 10, 03), o1);
+            Voluntario v2 = new Voluntario(2, "Giseli", "giseli@sebsa", 256330, 0201011, new DateTime(1980, 05, 10), o1);
             Voluntario v3 = new Voluntario(3, "Paula", "paula@resolvi", 789365, 0050500, new DateTime(1981, 06, 02), o1);
 
             Usuario u1 = new Usuario(1, "Daniel", 219486, 3969, "daniel@", new DateTime(1985, 07, 03), new DateTime(2020, 05, 02),
@@ -49,7 +48,7 @@ namespace YmagiWebMvc.Data
             Doacao d2 = new Doacao(2, new DateTime(1985, 10, 10), 235, DoacoesStatus.Pendente, v2, u2);
             Doacao d3 = new Doacao(3, new DateTime(1980, 10, 10), 235, DoacoesStatus.Realizado, v3, u3);
                        
-            _context.Osc.AddRange(o1, o2, o3);
+            _context.Osc.AddRange(o1);
 
             _context.Voluntario.AddRange(v1, v2, v3);
 

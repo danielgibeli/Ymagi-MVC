@@ -9,8 +9,9 @@ namespace YmagiWebMvc.Models
         public int Id { get; set; }
 
         [DisplayFormat(DataFormatString ="{0:dd/MM/yyy}")]
-
+        [DataType(DataType.Date)]
         public DateTime Data { get; set; }
+
         public double Total { get; set; }
         public DoacoesStatus Status { get; set; }
         public Voluntario Voluntario { get; set; }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using YmagiWebMvc.Models;
 
 namespace YmagiWebMvc.Models
 {
@@ -18,5 +19,6 @@ namespace YmagiWebMvc.Models
         public DbSet<Voluntario> Voluntario { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Insumo> Insumo { get; set; }
+        public DbSet<YmagiWebMvc.Models.Fornecedor> Fornecedor { get; set; }
     }
 }

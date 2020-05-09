@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YmagiWebMvc.Models;
 
 namespace YmagiWebMvc.Migrations
 {
     [DbContext(typeof(YmagiWebMvcContext))]
-    partial class YmagiWebMvcContextModelSnapshot : ModelSnapshot
+    [Migration("20200504011632_AtualizaEndOsc")]
+    partial class AtualizaEndOsc
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,50 +41,6 @@ namespace YmagiWebMvc.Migrations
                     b.HasIndex("VoluntarioId");
 
                     b.ToTable("Doacao");
-                });
-
-            modelBuilder.Entity("YmagiWebMvc.Models.Fornecedor", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Bairro");
-
-                    b.Property<string>("Cidade");
-
-                    b.Property<string>("Cnpj");
-
-                    b.Property<string>("Complemento");
-
-                    b.Property<string>("Contato");
-
-                    b.Property<string>("Email")
-                        .IsRequired();
-
-                    b.Property<string>("Endereço");
-
-                    b.Property<string>("Estado");
-
-                    b.Property<int?>("FornecedorId");
-
-                    b.Property<string>("NomeFantasia");
-
-                    b.Property<int>("Numero");
-
-                    b.Property<string>("RazaoSocial");
-
-                    b.Property<string>("Telefone")
-                        .IsRequired();
-
-                    b.Property<int?>("VoluntarioId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FornecedorId");
-
-                    b.HasIndex("VoluntarioId");
-
-                    b.ToTable("Fornecedor");
                 });
 
             modelBuilder.Entity("YmagiWebMvc.Models.Insumo", b =>
@@ -130,8 +88,7 @@ namespace YmagiWebMvc.Migrations
 
                     b.Property<string>("Contato");
 
-                    b.Property<string>("Email")
-                        .IsRequired();
+                    b.Property<string>("Email");
 
                     b.Property<string>("Endereço");
 
@@ -143,8 +100,7 @@ namespace YmagiWebMvc.Migrations
 
                     b.Property<string>("RazaoSocial");
 
-                    b.Property<string>("Telefone")
-                        .IsRequired();
+                    b.Property<string>("Telefone");
 
                     b.HasKey("Id");
 
@@ -168,8 +124,7 @@ namespace YmagiWebMvc.Migrations
 
                     b.Property<DateTime>("DataCadastro");
 
-                    b.Property<string>("Email")
-                        .IsRequired();
+                    b.Property<string>("Email");
 
                     b.Property<string>("Estado");
 
@@ -225,17 +180,6 @@ namespace YmagiWebMvc.Migrations
 
                     b.HasOne("YmagiWebMvc.Models.Voluntario", "Voluntario")
                         .WithMany("Doacoes")
-                        .HasForeignKey("VoluntarioId");
-                });
-
-            modelBuilder.Entity("YmagiWebMvc.Models.Fornecedor", b =>
-                {
-                    b.HasOne("YmagiWebMvc.Models.Fornecedor")
-                        .WithMany("Fornecedores")
-                        .HasForeignKey("FornecedorId");
-
-                    b.HasOne("YmagiWebMvc.Models.Voluntario", "Voluntario")
-                        .WithMany()
                         .HasForeignKey("VoluntarioId");
                 });
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,7 +15,12 @@ namespace YmagiWebMvc.Models
         public double SaldoEstoque { get; set; }
         public double ValorUnit { get; set; }
         public double ValorTotal { get; set; }
-        public DateTime Date { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyy}")]
+
+        [Display(Name = "Data do cadastro")]
+        [DataType(DataType.Date)]
+        public DateTime Date { get; set; }  
 
         public ICollection<Insumo> Insumos { get; set; } = new List<Insumo>();
 

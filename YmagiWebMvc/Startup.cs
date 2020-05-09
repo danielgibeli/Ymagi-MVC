@@ -52,6 +52,8 @@ namespace YmagiWebMvc
 
             services.AddScoped<DoacaosService>();
 
+            services.AddScoped<UsuariosService>();
+
 
         }
 
