@@ -9,11 +9,11 @@ using YmagiWebMvc.Models;
 
 namespace YmagiWebMvc.Controllers
 {
-    public class RecebimentoesController : Controller
+    public class RecebimentosController : Controller
     {
         private readonly YmagiWebMvcContext _context;
 
-        public RecebimentoesController(YmagiWebMvcContext context)
+        public RecebimentosController(YmagiWebMvcContext context)
         {
             _context = context;
         }

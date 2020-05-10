@@ -13,7 +13,7 @@ namespace YmagiWebMvc.Models
         [Display(Name = "Razão Social")]
         public string RazaoSocial { get; set; }
 
-        [Display(Name = "Nome Fantasia")]
+        [Display(Name = "Nome Organização")]
         public string Nome { get; set; }
 
         [Display(Name = "CNPJ")]

@@ -1,0 +1,88 @@
+﻿@model YmagiWebMvc.Models.ViewModels.OscFormViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Fornecedor</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Fornecedor.RazaoSocial" class="control-label"></label>
+                <input asp-for="Fornecedor.RazaoSocial" class="form-control" />
+                <span asp-validation-for="Fornecedor.RazaoSocial" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fornecedor.NomeFantasia" class="control-label"></label>
+                <input asp-for="Fornecedor.NomeFantasia" class="form-control" />
+                <span asp-validation-for="Fornecedor.NomeFantasia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fornecedor.Cnpj" class="control-label"></label>
+                <input asp-for="Fornecedor.Cnpj" class="form-control" />
+                <span asp-validation-for="Fornecedor.Cnpj" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fornecedor.Endereço" class="control-label"></label>
+                <input asp-for="Fornecedor.Endereço" class="form-control" />
+                <span asp-validation-for="Fornecedor.Endereço" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fornecedor.Numero" class="control-label"></label>
+                <input asp-for="Fornecedor.Numero" class="form-control" />
+                <span asp-validation-for="Fornecedor.Numero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fornecedor.Complemento" class="control-label"></label>
+                <input asp-for="Fornecedor.Complemento" class="form-control" />
+                <span asp-validation-for="Fornecedor.Complemento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fornecedor.Bairro" class="control-label"></label>
+                <input asp-for="Fornecedor.Bairro" class="form-control" />
+                <span asp-validation-for="Fornecedor.Bairro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fornecedor.Cidade" class="control-label"></label>
+                <input asp-for="Fornecedor.Cidade" class="form-control" />
+                <span asp-validation-for="Fornecedor.Cidade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fornecedor.Estado" class="control-label"></label>
+                <input asp-for="Fornecedor.Estado" class="form-control" />
+                <span asp-validation-for="Fornecedor.Estado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fornecedor.Contato" class="control-label"></label>
+                <input asp-for="Fornecedor.Contato" class="form-control" />
+                <span asp-validation-for="Fornecedor.Contato" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fornecedor.Telefone" class="control-label"></label>
+                <input asp-for="Fornecedor.Telefone" class="form-control" />
+                <span asp-validation-for="Fornecedor.Telefone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fornecedor.Email" class="control-label"></label>
+                <input asp-for="Fornecedor.Email" class="form-control" />
+                <span asp-validation-for="Fornecedor.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

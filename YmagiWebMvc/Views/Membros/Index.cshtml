@@ -7,7 +7,7 @@
 <h3>@ViewData["Title"]</h3>
 
 <p>
-    <a asp-action="Cadastro" class="btn btn-info">Novo membro</a>
+    <a asp-action="Cadastro" class="btn btn-info">Novo Membro</a>
 </p>
 
 <table class="table">
@@ -26,7 +26,7 @@
                 @Html.DisplayNameFor(model => model.Nascimento)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Osc)
+                @Html.DisplayNameFor(model => model.Osc.Nome)
             </th>
             <th></th>
         </tr>
@@ -48,7 +48,7 @@
                 @Html.DisplayFor(modelItem => item.Nascimento)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Osc)
+                @Html.DisplayFor(modelItem => item.Osc.Nome)
             </td>
             <td>
                 <a asp-action="Edit" class="btn btn-info" asp-route-id="@item.Id">Editar</a>

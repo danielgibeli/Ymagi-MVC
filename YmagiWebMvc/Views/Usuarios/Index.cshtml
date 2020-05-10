@@ -13,9 +13,6 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.DataCadastro)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
             <th>
@@ -27,41 +24,31 @@
             <th>
                 @Html.DisplayNameFor(model => model.Cidade)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Observacao)
-            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DataCadastro)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nome)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Telefone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cidade)
-                </td>   
-                <td>
-                    @Html.DisplayFor(modelItem => item.Observacao)
-                </td>
-                <td>
-                    <a asp-action="Edit" class="btn btn-info" asp-route-id="@item.Id">Editar</a>
-                    <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id">Detalhes</a>
-                    <a asp-action="Delete" class="btn btn-info" asp-route-id="@item.Id">Excluir</a>
-                </td>
-            </tr>
-        }
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nome)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Telefone)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Cidade)
+    </td>
+    <td>
+        <a asp-action="Edit" class="btn btn-info" asp-route-id="@item.Id">Editar</a>
+        <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id">Detalhes</a>
+        <a asp-action="Delete" class="btn btn-info" asp-route-id="@item.Id">Excluir</a>
+    </td>
+</tr>
+}
     </tbody>
 </table>

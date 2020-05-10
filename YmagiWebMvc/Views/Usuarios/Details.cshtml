@@ -7,6 +7,7 @@
 <h2>@ViewData["Title"]</h2>
 
 <div>
+    <h4>Usuario</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -20,6 +21,12 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Cpf)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Rg)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Rg)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Telefone)
@@ -38,6 +45,24 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Nascimento)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sexo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sexo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EstadoCivil)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EstadoCivil)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Filhos)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Filhos)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.DataCadastro)
@@ -87,14 +112,9 @@
         <dd>
             @Html.DisplayFor(model => model.Estado)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Observacao)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Observacao)
-        </dd>
     </dl>
 </div>
+
 <div>
     <a asp-action="Edit" class="btn btn-info" asp-route-id="@Model.Id">Edit</a>
     <a asp-action="Index" class="btn btn-info">Voltar</a>
