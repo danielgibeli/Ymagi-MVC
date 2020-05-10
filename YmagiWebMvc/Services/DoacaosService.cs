@@ -18,7 +18,7 @@ namespace YmagiWebMvc.Services
 
         public async Task<List<Doacao>> FindByDateAsync(DateTime? minDate, DateTime? maxDate)
         {
-            var result = from obj in _context.Doacao select obj;
+            var result = from obj in _context.Doacao select obj; 
             if (minDate.HasValue)
             {
                 result = result.Where(x => x.Data >= minDate.Value);
@@ -28,8 +28,8 @@ namespace YmagiWebMvc.Services
                 result = result.Where(x => x.Data <= maxDate.Value);
             }
             return await result
-                .Include(x => x.Voluntario)
-                .Include(x => x.Voluntario.Osc)
+                .Include(x => x.Membro)
+                .Include(x => x.Membro.Osc)
                 .OrderByDescending(x => x.Data)
                 .ToListAsync();
         }
@@ -46,10 +46,10 @@ namespace YmagiWebMvc.Services
                 result = result.Where(x => x.Data <= maxDate.Value);
             }
             return await result
-                .Include(x => x.Voluntario)
-                .Include(x => x.Voluntario.Osc)
+                .Include(x => x.Membro)
+                .Include(x => x.Membro.Osc)
                 .OrderByDescending(x => x.Data)
-                .GroupBy(x => x.Voluntario.Osc)
+                .GroupBy(x => x.Membro.Osc)
                 .ToListAsync();
         }
     }

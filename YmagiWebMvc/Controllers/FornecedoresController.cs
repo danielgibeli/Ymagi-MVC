@@ -9,22 +9,22 @@ using YmagiWebMvc.Models;
 
 namespace YmagiWebMvc.Controllers
 {
-    public class InsumosController : Controller
+    public class FornecedoresController : Controller
     {
         private readonly YmagiWebMvcContext _context;
 
-        public InsumosController(YmagiWebMvcContext context)
+        public FornecedoresController(YmagiWebMvcContext context)
         {
             _context = context;
         }
 
-        // GET: Insumos
+        // GET: Fornecedores
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Insumo.ToListAsync());
+            return View(await _context.Fornecedor.ToListAsync());
         }
 
-        // GET: Insumos/Details/5
+        // GET: Fornecedores/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +32,39 @@ namespace YmagiWebMvc.Controllers
                 return NotFound();
             }
 
-            var insumo = await _context.Insumo
+            var fornecedor = await _context.Fornecedor
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (insumo == null)
+            if (fornecedor == null)
             {
                 return NotFound();
             }
 
-            return View(insumo);
+            return View(fornecedor);
         }
 
-        // GET: Insumos/Create
+        // GET: Fornecedores/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Insumos/Create
+        // POST: Fornecedores/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Unidade,Quantidade,SaldoEstoque,ValorUnit,ValorTotal,Date")] Insumo insumo)
+        public async Task<IActionResult> Create([Bind("Id,RazaoSocial,NomeFantasia,Cnpj,Endereço,Numero,Complemento,Bairro,Cidade,Estado,Contato,Telefone,Email")] Fornecedor fornecedor)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(insumo);
+                _context.Add(fornecedor);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(insumo);
+            return View(fornecedor);
         }
 
-        // GET: Insumos/Edit/5
+        // GET: Fornecedores/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +72,22 @@ namespace YmagiWebMvc.Controllers
                 return NotFound();
             }
 
-            var insumo = await _context.Insumo.FindAsync(id);
-            if (insumo == null)
+            var fornecedor = await _context.Fornecedor.FindAsync(id);
+            if (fornecedor == null)
             {
                 return NotFound();
             }
-            return View(insumo);
+            return View(fornecedor);
         }
 
-        // POST: Insumos/Edit/5
+        // POST: Fornecedores/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Unidade,Quantidade,SaldoEstoque,ValorUnit,ValorTotal,Date")] Insumo insumo)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,RazaoSocial,NomeFantasia,Cnpj,Endereço,Numero,Complemento,Bairro,Cidade,Estado,Contato,Telefone,Email")] Fornecedor fornecedor)
         {
-            if (id != insumo.Id)
+            if (id != fornecedor.Id)
             {
                 return NotFound();
             }
@@ -96,12 +96,12 @@ namespace YmagiWebMvc.Controllers
             {
                 try
                 {
-                    _context.Update(insumo);
+                    _context.Update(fornecedor);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!InsumoExists(insumo.Id))
+                    if (!FornecedorExists(fornecedor.Id))
                     {
                         return NotFound();
                     }
@@ -112,10 +112,10 @@ namespace YmagiWebMvc.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(insumo);
+            return View(fornecedor);
         }
 
-        // GET: Insumos/Delete/5
+        // GET: Fornecedores/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,30 +123,30 @@ namespace YmagiWebMvc.Controllers
                 return NotFound();
             }
 
-            var insumo = await _context.Insumo
+            var fornecedor = await _context.Fornecedor
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (insumo == null)
+            if (fornecedor == null)
             {
                 return NotFound();
             }
 
-            return View(insumo);
+            return View(fornecedor);
         }
 
-        // POST: Insumos/Delete/5
+        // POST: Fornecedores/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var insumo = await _context.Insumo.FindAsync(id);
-            _context.Insumo.Remove(insumo);
+            var fornecedor = await _context.Fornecedor.FindAsync(id);
+            _context.Fornecedor.Remove(fornecedor);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool InsumoExists(int id)
+        private bool FornecedorExists(int id)
         {
-            return _context.Insumo.Any(e => e.Id == id);
+            return _context.Fornecedor.Any(e => e.Id == id);
         }
     }
 }

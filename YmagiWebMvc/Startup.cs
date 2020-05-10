@@ -46,7 +46,7 @@ namespace YmagiWebMvc
 
             services.AddScoped<SeendingService>();
 
-            services.AddScoped<VoluntariosService>();
+            services.AddScoped<MembrosService>();
 
             services.AddScoped<OscService>();
 

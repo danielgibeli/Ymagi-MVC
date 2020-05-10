@@ -30,11 +30,11 @@ namespace YmagiWebMvc.Migrations
 
                     b.Property<double>("Total");
 
-                    b.Property<int?>("VoluntarioId");
+                    b.Property<int?>("membroId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("VoluntarioId");
+                    b.HasIndex("membroId");
 
                     b.ToTable("Doacao");
                 });
@@ -61,7 +61,7 @@ namespace YmagiWebMvc.Migrations
                     b.ToTable("Osc");
                 });
 
-            modelBuilder.Entity("YmagiWebMvc.Models.Voluntario", b =>
+            modelBuilder.Entity("YmagiWebMvc.Models.membro", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -82,20 +82,20 @@ namespace YmagiWebMvc.Migrations
 
                     b.HasIndex("OscId");
 
-                    b.ToTable("Voluntario");
+                    b.ToTable("membro");
                 });
 
             modelBuilder.Entity("YmagiWebMvc.Models.Doacao", b =>
                 {
-                    b.HasOne("YmagiWebMvc.Models.Voluntario", "Voluntario")
+                    b.HasOne("YmagiWebMvc.Models.membro", "membro")
                         .WithMany("Doacoes")
-                        .HasForeignKey("VoluntarioId");
+                        .HasForeignKey("membroId");
                 });
 
-            modelBuilder.Entity("YmagiWebMvc.Models.Voluntario", b =>
+            modelBuilder.Entity("YmagiWebMvc.Models.membro", b =>
                 {
                     b.HasOne("YmagiWebMvc.Models.Osc", "Osc")
-                        .WithMany("Voluntarios")
+                        .WithMany("Membros")
                         .HasForeignKey("OscId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

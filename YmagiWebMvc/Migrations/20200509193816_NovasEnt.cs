@@ -34,7 +34,7 @@ namespace YmagiWebMvc.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    VoluntarioId = table.Column<int>(nullable: true),
+                    membroId = table.Column<int>(nullable: true),
                     RazaoSocial = table.Column<string>(nullable: true),
                     NomeFantasia = table.Column<string>(nullable: true),
                     Cnpj = table.Column<string>(nullable: true),
@@ -59,9 +59,9 @@ namespace YmagiWebMvc.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Fornecedor_Voluntario_VoluntarioId",
-                        column: x => x.VoluntarioId,
-                        principalTable: "Voluntario",
+                        name: "FK_Fornecedor_membro_membroId",
+                        column: x => x.membroId,
+                        principalTable: "membro",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -72,9 +72,9 @@ namespace YmagiWebMvc.Migrations
                 column: "FornecedorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Fornecedor_VoluntarioId",
+                name: "IX_Fornecedor_membroId",
                 table: "Fornecedor",
-                column: "VoluntarioId");
+                column: "membroId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

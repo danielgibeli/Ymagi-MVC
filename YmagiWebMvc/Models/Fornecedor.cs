@@ -10,7 +10,7 @@ namespace YmagiWebMvc.Models
     {
         public int Id { get; set; }
 
-        public Voluntario Voluntario { get; set; }
+        public Membro Membro { get; set; }
 
         [Display(Name = "Razão Social")]
         public string RazaoSocial { get; set; }
@@ -50,13 +50,13 @@ namespace YmagiWebMvc.Models
         {
         }
 
-        public Fornecedor(int id, Voluntario voluntario,string razaoSocial, string nomeFantasia,
+        public Fornecedor(int id, Membro membro,string razaoSocial, string nomeFantasia,
             string cnpj, string endereço, int numero, string complemento,
             string bairro, string cidade, string estado, string contato,
             string telefone, string email)
         {
             Id = id;
-            Voluntario = voluntario;
+            Membro = membro;
             RazaoSocial = razaoSocial;
             NomeFantasia = nomeFantasia;
             Cnpj = cnpj;

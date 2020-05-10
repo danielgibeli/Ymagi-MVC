@@ -14,20 +14,20 @@ namespace YmagiWebMvc.Models
 
         public double Total { get; set; }
         public DoacoesStatus Status { get; set; }
-        public Voluntario Voluntario { get; set; }
+        public Membro Membro { get; set; }
         public Usuario Usuario { get; set; }
 
         public Doacao()
         {
         }
 
-        public Doacao(int id, DateTime data, double total, DoacoesStatus status, Voluntario voluntario, Usuario usuario)
+        public Doacao(int id, DateTime data, double total, DoacoesStatus status, Membro membro, Usuario usuario)
         {
             Id = id;
             Data = data;
             Total = total;
             Status = status;
-            Voluntario = voluntario;
+            Membro = membro;
             Usuario = usuario;
         }
     }

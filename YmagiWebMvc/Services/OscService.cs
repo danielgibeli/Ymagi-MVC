@@ -19,7 +19,7 @@ namespace YmagiWebMvc.Services
 
         public async Task<List<Osc>> FindAllAsync()
         {
-            return await _context.Osc.OrderBy(x => x.NomeFantasia).ToListAsync();
+            return await _context.Osc.OrderBy(x => x.Nome).ToListAsync();
         }
 
         public async Task RemoveAsync(int id)

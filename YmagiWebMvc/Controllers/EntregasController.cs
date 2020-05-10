@@ -9,22 +9,22 @@ using YmagiWebMvc.Models;
 
 namespace YmagiWebMvc.Controllers
 {
-    public class FornecedorsController : Controller
+    public class EntregasController : Controller
     {
         private readonly YmagiWebMvcContext _context;
 
-        public FornecedorsController(YmagiWebMvcContext context)
+        public EntregasController(YmagiWebMvcContext context)
         {
             _context = context;
         }
 
-        // GET: Fornecedors
+        // GET: Entregas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Fornecedor.ToListAsync());
+            return View(await _context.Entrega.ToListAsync());
         }
 
-        // GET: Fornecedors/Details/5
+        // GET: Entregas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +32,39 @@ namespace YmagiWebMvc.Controllers
                 return NotFound();
             }
 
-            var fornecedor = await _context.Fornecedor
+            var entrega = await _context.Entrega
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (fornecedor == null)
+            if (entrega == null)
             {
                 return NotFound();
             }
 
-            return View(fornecedor);
+            return View(entrega);
         }
 
-        // GET: Fornecedors/Create
+        // GET: Entregas/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Fornecedors/Create
+        // POST: Entregas/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,RazaoSocial,NomeFantasia,Cnpj,Endereço,Numero,Complemento,Bairro,Cidade,Estado,Contato,Telefone,Email")] Fornecedor fornecedor)
+        public async Task<IActionResult> Create([Bind("Id,Data,Total,Status")] Entrega entrega)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(fornecedor);
+                _context.Add(entrega);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(fornecedor);
+            return View(entrega);
         }
 
-        // GET: Fornecedors/Edit/5
+        // GET: Entregas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +72,22 @@ namespace YmagiWebMvc.Controllers
                 return NotFound();
             }
 
-            var fornecedor = await _context.Fornecedor.FindAsync(id);
-            if (fornecedor == null)
+            var entrega = await _context.Entrega.FindAsync(id);
+            if (entrega == null)
             {
                 return NotFound();
             }
-            return View(fornecedor);
+            return View(entrega);
         }
 
-        // POST: Fornecedors/Edit/5
+        // POST: Entregas/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,RazaoSocial,NomeFantasia,Cnpj,Endereço,Numero,Complemento,Bairro,Cidade,Estado,Contato,Telefone,Email")] Fornecedor fornecedor)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Data,Total,Status")] Entrega entrega)
         {
-            if (id != fornecedor.Id)
+            if (id != entrega.Id)
             {
                 return NotFound();
             }
@@ -96,12 +96,12 @@ namespace YmagiWebMvc.Controllers
             {
                 try
                 {
-                    _context.Update(fornecedor);
+                    _context.Update(entrega);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!FornecedorExists(fornecedor.Id))
+                    if (!EntregaExists(entrega.Id))
                     {
                         return NotFound();
                     }
@@ -112,10 +112,10 @@ namespace YmagiWebMvc.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(fornecedor);
+            return View(entrega);
         }
 
-        // GET: Fornecedors/Delete/5
+        // GET: Entregas/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,30 +123,30 @@ namespace YmagiWebMvc.Controllers
                 return NotFound();
             }
 
-            var fornecedor = await _context.Fornecedor
+            var entrega = await _context.Entrega
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (fornecedor == null)
+            if (entrega == null)
             {
                 return NotFound();
             }
 
-            return View(fornecedor);
+            return View(entrega);
         }
 
-        // POST: Fornecedors/Delete/5
+        // POST: Entregas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var fornecedor = await _context.Fornecedor.FindAsync(id);
-            _context.Fornecedor.Remove(fornecedor);
+            var entrega = await _context.Entrega.FindAsync(id);
+            _context.Entrega.Remove(entrega);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool FornecedorExists(int id)
+        private bool EntregaExists(int id)
         {
-            return _context.Fornecedor.Any(e => e.Id == id);
+            return _context.Entrega.Any(e => e.Id == id);
         }
     }
 }

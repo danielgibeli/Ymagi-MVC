@@ -16,9 +16,11 @@ namespace YmagiWebMvc.Models
 
         public DbSet<Osc> Osc { get; set; }
         public DbSet<Doacao> Doacao { get; set; }
-        public DbSet<Voluntario> Voluntario { get; set; }
+        public DbSet<Membro> Membro { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
-        public DbSet<Insumo> Insumo { get; set; }
-        public DbSet<YmagiWebMvc.Models.Fornecedor> Fornecedor { get; set; }
+        public DbSet<Produto> Produto { get; set; }
+        public DbSet<Fornecedor> Fornecedor { get; set; }
+        public DbSet<Entrega> Entrega { get; set; }
+        public DbSet<Recebimento> Recebimento { get; set; }
     }
 }

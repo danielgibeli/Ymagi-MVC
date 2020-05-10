@@ -27,7 +27,7 @@ namespace YmagiWebMvc.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Voluntario",
+                name: "membro",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -41,9 +41,9 @@ namespace YmagiWebMvc.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Voluntario", x => x.Id);
+                    table.PrimaryKey("PK_membro", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Voluntario_Osc_OscId",
+                        name: "FK_membro_Osc_OscId",
                         column: x => x.OscId,
                         principalTable: "Osc",
                         principalColumn: "Id",
@@ -59,27 +59,27 @@ namespace YmagiWebMvc.Migrations
                     Data = table.Column<DateTime>(nullable: false),
                     Total = table.Column<double>(nullable: false),
                     Status = table.Column<int>(nullable: false),
-                    VoluntarioId = table.Column<int>(nullable: true)
+                    membroId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Doacao", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Doacao_Voluntario_VoluntarioId",
-                        column: x => x.VoluntarioId,
-                        principalTable: "Voluntario",
+                        name: "FK_Doacao_membro_membroId",
+                        column: x => x.membroId,
+                        principalTable: "membro",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Doacao_VoluntarioId",
+                name: "IX_Doacao_membroId",
                 table: "Doacao",
-                column: "VoluntarioId");
+                column: "membroId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Voluntario_OscId",
-                table: "Voluntario",
+                name: "IX_membro_OscId",
+                table: "membro",
                 column: "OscId");
         }
 
@@ -89,7 +89,7 @@ namespace YmagiWebMvc.Migrations
                 name: "Doacao");
 
             migrationBuilder.DropTable(
-                name: "Voluntario");
+                name: "membro");
 
             migrationBuilder.DropTable(
                 name: "Osc");

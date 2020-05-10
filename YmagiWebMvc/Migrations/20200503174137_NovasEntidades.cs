@@ -10,7 +10,7 @@ namespace YmagiWebMvc.Migrations
         {
             migrationBuilder.AlterColumn<string>(
                 name: "Nome",
-                table: "Voluntario",
+                table: "membro",
                 maxLength: 50,
                 nullable: false,
                 oldClrType: typeof(string),
@@ -18,7 +18,7 @@ namespace YmagiWebMvc.Migrations
 
             migrationBuilder.AlterColumn<string>(
                 name: "Email",
-                table: "Voluntario",
+                table: "membro",
                 nullable: false,
                 oldClrType: typeof(string),
                 oldNullable: true);
@@ -29,7 +29,7 @@ namespace YmagiWebMvc.Migrations
                 nullable: true);
 
             migrationBuilder.CreateTable(
-                name: "Insumo",
+                name: "Produto",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -41,22 +41,22 @@ namespace YmagiWebMvc.Migrations
                     ValorUnit = table.Column<double>(nullable: false),
                     ValorTotal = table.Column<double>(nullable: false),
                     Date = table.Column<DateTime>(nullable: false),
-                    InsumoId = table.Column<int>(nullable: true),
-                    VoluntarioId = table.Column<int>(nullable: true)
+                    ProdutoId = table.Column<int>(nullable: true),
+                    membroId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Insumo", x => x.Id);
+                    table.PrimaryKey("PK_Produto", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Insumo_Insumo_InsumoId",
-                        column: x => x.InsumoId,
-                        principalTable: "Insumo",
+                        name: "FK_Produto_Produto_ProdutoId",
+                        column: x => x.ProdutoId,
+                        principalTable: "Produto",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Insumo_Voluntario_VoluntarioId",
-                        column: x => x.VoluntarioId,
-                        principalTable: "Voluntario",
+                        name: "FK_Produto_membro_membroId",
+                        column: x => x.membroId,
+                        principalTable: "membro",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -93,14 +93,14 @@ namespace YmagiWebMvc.Migrations
                 column: "UsuarioId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Insumo_InsumoId",
-                table: "Insumo",
-                column: "InsumoId");
+                name: "IX_Produto_ProdutoId",
+                table: "Produto",
+                column: "ProdutoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Insumo_VoluntarioId",
-                table: "Insumo",
-                column: "VoluntarioId");
+                name: "IX_Produto_membroId",
+                table: "Produto",
+                column: "membroId");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Doacao_Usuario_UsuarioId",
@@ -118,7 +118,7 @@ namespace YmagiWebMvc.Migrations
                 table: "Doacao");
 
             migrationBuilder.DropTable(
-                name: "Insumo");
+                name: "Produto");
 
             migrationBuilder.DropTable(
                 name: "Usuario");
@@ -133,14 +133,14 @@ namespace YmagiWebMvc.Migrations
 
             migrationBuilder.AlterColumn<string>(
                 name: "Nome",
-                table: "Voluntario",
+                table: "membro",
                 nullable: true,
                 oldClrType: typeof(string),
                 oldMaxLength: 50);
 
             migrationBuilder.AlterColumn<string>(
                 name: "Email",
-                table: "Voluntario",
+                table: "membro",
                 nullable: true,
                 oldClrType: typeof(string));
         }

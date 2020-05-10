@@ -1,13 +1,13 @@
-﻿@model IEnumerable<YmagiWebMvc.Models.Voluntario>
+﻿@model IEnumerable<YmagiWebMvc.Models.Membro>
 
 @{
-    ViewData["Title"] = "Voluntarios";
+    ViewData["Title"] = "Membros";
 }
 
 <h3>@ViewData["Title"]</h3>
 
 <p>
-    <a asp-action="Cadastro" class="btn btn-info">Novo Voluntario</a>
+    <a asp-action="Cadastro" class="btn btn-info">Novo membro</a>
 </p>
 
 <table class="table">
@@ -18,9 +18,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Celular)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Telefone)
@@ -43,9 +40,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Celular)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Telefone)

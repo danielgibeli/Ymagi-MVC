@@ -8,37 +8,37 @@ using System.Threading.Tasks;
 
 namespace YmagiWebMvc.Services
 {
-    public class VoluntariosService
+    public class MembrosService
     {
         private readonly YmagiWebMvcContext _context;
 
-        public VoluntariosService(YmagiWebMvcContext context)
+        public MembrosService(YmagiWebMvcContext context)
         {
             _context = context;
         }
 
-        public async Task<List<Voluntario>> FindAllAsync()
+        public async Task<List<Membro>> FindAllAsync()
         {
-            return await _context.Voluntario.ToListAsync();
+            return await _context.Membro.ToListAsync();
         }
 
-        public async Task InsertAsync(Voluntario obj)
+        public async Task InsertAsync(Membro obj)
         {
             _context.Add(obj);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Voluntario> FindByIdAsync(int id)
+        public async Task<Membro> FindByIdAsync(int id)
         {
-            return await _context.Voluntario.Include(obj => obj.Osc).FirstOrDefaultAsync(obj => obj.Id == id);
+            return await _context.Membro.Include(obj => obj.Osc).FirstOrDefaultAsync(obj => obj.Id == id);
         }
 
         public async Task RemoveAsync(int id)
         {
             try
             {
-                var obj = await _context.Voluntario.FindAsync(id);
-                _context.Voluntario.Remove(obj);
+                var obj = await _context.Membro.FindAsync(id);
+                _context.Membro.Remove(obj);
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException)
@@ -47,9 +47,9 @@ namespace YmagiWebMvc.Services
             }
         }
 
-        public async Task UpdateAsync(Voluntario obj)
+        public async Task UpdateAsync(Membro obj)
         {
-            bool hasAny = await _context.Voluntario.AnyAsync(x => x.Id == obj.Id);
+            bool hasAny = await _context.Membro.AnyAsync(x => x.Id == obj.Id);
             if (!hasAny)
             {
                 throw new NotFoundException("Voluntário não encontrado");

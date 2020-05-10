@@ -1,12 +1,11 @@
-﻿@model YmagiWebMvc.Models.Insumo
+﻿@model YmagiWebMvc.Models.Produto
 
 @{
-    ViewData["Title"] = "Excluir";
+    ViewData["Title"] = "Detalhes";
 }
 
 <h2>@ViewData["Title"]</h2>
 
-<h3>Deseja excluir esse item?</h3>
 <div>
     <hr />
     <dl class="dl-horizontal">
@@ -29,10 +28,10 @@
             @Html.DisplayFor(model => model.Quantidade)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.SaldoEstoque)
+            @Html.DisplayNameFor(model => model.Total)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.SaldoEstoque)
+            @Html.DisplayFor(model => model.Total)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.ValorUnit)
@@ -53,10 +52,8 @@
             @Html.DisplayFor(model => model.Date)
         </dd>
     </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Excluir" class="btn btn-info"/>
-        <a asp-action="Index" class="btn btn-info">Voltar</a>
-    </form>
+</div>
+<div>
+    <a asp-action="Edit" class="btn btn-info" asp-route-id="@Model.Id">Editar</a>
+    <a asp-action="Index" class="btn btn-info">Voltar</a>
 </div>
