@@ -151,7 +151,7 @@ namespace YmagiWebMvc.Migrations
 
                     b.Property<int>("Rg");
 
-                    b.Property<string>("Rua");
+                    b.Property<string>("Endereco");
 
                     b.Property<string>("Sexo");
 
@@ -304,7 +304,7 @@ namespace YmagiWebMvc.Migrations
 
                     b.Property<int>("Rg");
 
-                    b.Property<string>("Rua");
+                    b.Property<string>("Endereco");
 
                     b.Property<string>("Sexo");
 

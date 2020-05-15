@@ -9,8 +9,8 @@ using YmagiWebMvc.Models;
 namespace YmagiWebMvc.Migrations
 {
     [DbContext(typeof(YmagiWebMvcContext))]
-    [Migration("20200509232159_Nova")]
-    partial class Nova
+    [Migration("20200510181724_Dados")]
+    partial class Dados
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -288,6 +288,10 @@ namespace YmagiWebMvc.Migrations
 
                     b.Property<string>("Estado");
 
+                    b.Property<string>("EstadoCivil");
+
+                    b.Property<int>("Filhos");
+
                     b.Property<int?>("MembroId");
 
                     b.Property<DateTime>("Nascimento");
@@ -296,11 +300,13 @@ namespace YmagiWebMvc.Migrations
 
                     b.Property<int>("Numero");
 
-                    b.Property<string>("Observacao");
-
                     b.Property<int?>("OscId");
 
+                    b.Property<int>("Rg");
+
                     b.Property<string>("Endereco");
+
+                    b.Property<string>("Sexo");
 
                     b.Property<int>("Telefone");
 
@@ -320,7 +326,7 @@ namespace YmagiWebMvc.Migrations
                         .HasForeignKey("MembroId");
 
                     b.HasOne("YmagiWebMvc.Models.Usuario", "Usuario")
-                        .WithMany("Doacaos")
+                        .WithMany()
                         .HasForeignKey("UsuarioId");
                 });
 
@@ -335,7 +341,7 @@ namespace YmagiWebMvc.Migrations
                         .HasForeignKey("OscId");
 
                     b.HasOne("YmagiWebMvc.Models.Usuario", "Usuario")
-                        .WithMany()
+                        .WithMany("Entregas")
                         .HasForeignKey("UsuarioId");
                 });
 
@@ -383,17 +389,17 @@ namespace YmagiWebMvc.Migrations
                         .HasForeignKey("OscId");
 
                     b.HasOne("YmagiWebMvc.Models.Usuario", "Usuario")
-                        .WithMany()
+                        .WithMany("Recebimentos")
                         .HasForeignKey("UsuarioId");
                 });
 
             modelBuilder.Entity("YmagiWebMvc.Models.Usuario", b =>
                 {
-                    b.HasOne("YmagiWebMvc.Models.Membro")
+                    b.HasOne("YmagiWebMvc.Models.Membro", "Membro")
                         .WithMany("Usuarios")
                         .HasForeignKey("MembroId");
 
-                    b.HasOne("YmagiWebMvc.Models.Osc")
+                    b.HasOne("YmagiWebMvc.Models.Osc", "Osc")
                         .WithMany("Usuarios")
                         .HasForeignKey("OscId");
                 });

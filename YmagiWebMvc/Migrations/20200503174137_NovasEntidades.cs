@@ -74,7 +74,7 @@ namespace YmagiWebMvc.Migrations
                     Nascimento = table.Column<DateTime>(nullable: false),
                     DataCadastro = table.Column<DateTime>(nullable: false),
                     Cep = table.Column<int>(nullable: false),
-                    Rua = table.Column<string>(nullable: true),
+                    Endereco = table.Column<string>(nullable: true),
                     Numero = table.Column<int>(nullable: false),
                     Complemento = table.Column<string>(nullable: true),
                     Bairro = table.Column<string>(nullable: true),

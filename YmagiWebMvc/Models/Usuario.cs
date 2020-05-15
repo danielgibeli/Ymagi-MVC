@@ -12,14 +12,14 @@ namespace YmagiWebMvc.Models
         public string Nome { get; set; }
 
         [Display(Name = "Número CPF")]
-        public int Cpf { get; set; }
+        public string Cpf { get; set; }
 
         [Display(Name = "Número RG")]
-        public int Rg { get; set; }
+        public string Rg { get; set; }
 
         [Required(ErrorMessage = "{0} obrigatório")]
         [DataType(DataType.PhoneNumber)]
-        public int Telefone { get; set; }
+        public string Telefone { get; set; }
 
         [Required(ErrorMessage = "{0} obrigatório")]
         [EmailAddress(ErrorMessage = "{0} digite um email válido!")]
@@ -38,24 +38,23 @@ namespace YmagiWebMvc.Models
         public string EstadoCivil { get; set; }
 
         [Display(Name = "Tem Filhos? Quantos?")]
-        public int Filhos { get; set; }
+        public string Filhos { get; set; }
 
         [Display(Name = "Data de cadastro")]
         [DataType(DataType.Date)]
         public DateTime DataCadastro { get; set; }
 
         [Display(Name = "CEP")]
-        public int Cep { get; set; }
-        public string Rua { get; set; }
+        public string Cep { get; set; }
+        public string Endereco { get; set; }
 
         [Display(Name = "Número")]
-        public int Numero { get; set; }
+        public string Numero { get; set; }
         public string Complemento { get; set; }
         public string Bairro { get; set; }
         public string Cidade { get; set; }
         public string Estado { get; set; }
         public Membro Membro { get; set; }
-        public Osc Osc { get; set; }
 
         public ICollection<Entrega> Entregas { get; set; } = new List<Entrega>();
         public ICollection<Recebimento> Recebimentos { get; set; } = new List<Recebimento>();
@@ -65,10 +64,9 @@ namespace YmagiWebMvc.Models
         {
         }
 
-        public Usuario(int id, string nome, int cpf, int rg, int telefone,
-            string email, DateTime nascimento, string sexo, string estadoCivil,
-            int filhos, DateTime dataCadastro, int cep, string rua, int numero,
-            string complemento, string bairro, string cidade, string estado)
+        public Usuario(int id, string nome, string cpf, string rg, string telefone, string email, DateTime nascimento, 
+            string sexo, string estadoCivil, string filhos, DateTime dataCadastro, string cep, string endereco, string numero, 
+            string complemento, string bairro, string cidade, string estado, Membro membro)
         {
             Id = id;
             Nome = nome;
@@ -82,12 +80,13 @@ namespace YmagiWebMvc.Models
             Filhos = filhos;
             DataCadastro = dataCadastro;
             Cep = cep;
-            Rua = rua;
+            Endereco = endereco;
             Numero = numero;
             Complemento = complemento;
             Bairro = bairro;
             Cidade = cidade;
             Estado = estado;
+            Membro = membro;
         }
     }
 }

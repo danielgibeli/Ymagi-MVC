@@ -200,7 +200,7 @@ namespace YmagiWebMvc.Migrations
                 defaultValue: 0);
 
             migrationBuilder.AddColumn<string>(
-                name: "Rua",
+                name: "Endereco",
                 table: "membro",
                 nullable: true);
 
@@ -499,7 +499,7 @@ namespace YmagiWebMvc.Migrations
                 table: "membro");
 
             migrationBuilder.DropColumn(
-                name: "Rua",
+                name: "Endereco",
                 table: "membro");
 
             migrationBuilder.DropColumn(

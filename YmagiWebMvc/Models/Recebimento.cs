@@ -9,26 +9,29 @@ namespace YmagiWebMvc.Models
     public class Recebimento
     {
         public int Id { get; set; }
-        public Fornecedor Fornecedor { get; set; }
-        public DateTime Data { get; set; }
+        public Produto  Produto { get; set; }
+        public double Quantidade { get; set; }
         public double Total { get; set; }
+        public double ValorUnit { get; set; }
+        public double ValorTotal { get; set; }
+        public DateTime Data { get; set; }
         public Usuario Usuario { get; set; }
-        public Membro Membro { get; set; }
+        public Fornecedor Fornecedor { get; set; }
+
         public DoacoesStatus Status { get; set; }
 
         public Recebimento()
         {
         }
 
-        public Recebimento(int id, DateTime data, Fornecedor fornecedor,
-            double total, Usuario usuario, Membro membro, DoacoesStatus status)
+        public Recebimento(int id, DateTime data, double total, Usuario usuario, 
+            Membro membro, Fornecedor fornecedor, DoacoesStatus status)
         {
             Id = id;
             Data = data;
-            Fornecedor = fornecedor;
             Total = total;
             Usuario = usuario;
-            Membro = membro;
+            Fornecedor = fornecedor;
             Status = status;
         }
     }

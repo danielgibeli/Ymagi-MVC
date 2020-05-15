@@ -9,8 +9,8 @@ using YmagiWebMvc.Models;
 namespace YmagiWebMvc.Migrations
 {
     [DbContext(typeof(YmagiWebMvcContext))]
-    [Migration("20200509232159_Nova")]
-    partial class Nova
+    [Migration("20200511013246_FornecedorId")]
+    partial class FornecedorId
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,13 +26,13 @@ namespace YmagiWebMvc.Migrations
 
                     b.Property<DateTime>("Data");
 
-                    b.Property<int?>("MembroId");
+                    b.Property<int>("MembroId");
 
                     b.Property<int>("Status");
 
                     b.Property<double>("Total");
 
-                    b.Property<int?>("UsuarioId");
+                    b.Property<int>("UsuarioId");
 
                     b.HasKey("Id");
 
@@ -50,7 +50,7 @@ namespace YmagiWebMvc.Migrations
 
                     b.Property<DateTime>("Data");
 
-                    b.Property<int?>("MembroId");
+                    b.Property<int>("MembroId");
 
                     b.Property<int?>("OscId");
 
@@ -58,7 +58,7 @@ namespace YmagiWebMvc.Migrations
 
                     b.Property<double>("Total");
 
-                    b.Property<int?>("UsuarioId");
+                    b.Property<int>("UsuarioId");
 
                     b.HasKey("Id");
 
@@ -95,7 +95,7 @@ namespace YmagiWebMvc.Migrations
 
                     b.Property<int?>("FornecedorId");
 
-                    b.Property<int?>("MembroId");
+                    b.Property<int>("MembroId");
 
                     b.Property<string>("NomeFantasia");
 
@@ -147,7 +147,7 @@ namespace YmagiWebMvc.Migrations
 
                     b.Property<int>("Numero");
 
-                    b.Property<int?>("OscId");
+                    b.Property<int>("OScId");
 
                     b.Property<int>("Rg");
 
@@ -159,7 +159,7 @@ namespace YmagiWebMvc.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OscId");
+                    b.HasIndex("OScId");
 
                     b.ToTable("Membro");
                 });
@@ -209,7 +209,7 @@ namespace YmagiWebMvc.Migrations
 
                     b.Property<DateTime>("Date");
 
-                    b.Property<int?>("FornecedorId");
+                    b.Property<int>("FornecedorId");
 
                     b.Property<int?>("MembroId");
 
@@ -241,9 +241,9 @@ namespace YmagiWebMvc.Migrations
 
                     b.Property<DateTime>("Data");
 
-                    b.Property<int?>("FornecedorId");
+                    b.Property<int>("FornecedorId");
 
-                    b.Property<int?>("MembroId");
+                    b.Property<int>("MembroId");
 
                     b.Property<int?>("OscId");
 
@@ -251,7 +251,7 @@ namespace YmagiWebMvc.Migrations
 
                     b.Property<double>("Total");
 
-                    b.Property<int?>("UsuarioId");
+                    b.Property<int>("UsuarioId");
 
                     b.HasKey("Id");
 
@@ -288,7 +288,11 @@ namespace YmagiWebMvc.Migrations
 
                     b.Property<string>("Estado");
 
-                    b.Property<int?>("MembroId");
+                    b.Property<string>("EstadoCivil");
+
+                    b.Property<int>("Filhos");
+
+                    b.Property<int>("MembroId");
 
                     b.Property<DateTime>("Nascimento");
 
@@ -296,11 +300,13 @@ namespace YmagiWebMvc.Migrations
 
                     b.Property<int>("Numero");
 
-                    b.Property<string>("Observacao");
+                    b.Property<int>("OscId");
 
-                    b.Property<int?>("OscId");
+                    b.Property<int>("Rg");
 
                     b.Property<string>("Endereco");
+
+                    b.Property<string>("Sexo");
 
                     b.Property<int>("Telefone");
 
@@ -317,26 +323,30 @@ namespace YmagiWebMvc.Migrations
                 {
                     b.HasOne("YmagiWebMvc.Models.Membro", "Membro")
                         .WithMany()
-                        .HasForeignKey("MembroId");
+                        .HasForeignKey("MembroId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("YmagiWebMvc.Models.Usuario", "Usuario")
-                        .WithMany("Doacaos")
-                        .HasForeignKey("UsuarioId");
+                        .WithMany()
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("YmagiWebMvc.Models.Entrega", b =>
                 {
                     b.HasOne("YmagiWebMvc.Models.Membro", "Membro")
                         .WithMany("Entregas")
-                        .HasForeignKey("MembroId");
+                        .HasForeignKey("MembroId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("YmagiWebMvc.Models.Osc")
                         .WithMany("Entregas")
                         .HasForeignKey("OscId");
 
                     b.HasOne("YmagiWebMvc.Models.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioId");
+                        .WithMany("Entregas")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("YmagiWebMvc.Models.Fornecedor", b =>
@@ -347,21 +357,24 @@ namespace YmagiWebMvc.Migrations
 
                     b.HasOne("YmagiWebMvc.Models.Membro", "Membro")
                         .WithMany("Fornecedores")
-                        .HasForeignKey("MembroId");
+                        .HasForeignKey("MembroId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("YmagiWebMvc.Models.Membro", b =>
                 {
                     b.HasOne("YmagiWebMvc.Models.Osc", "Osc")
                         .WithMany("Membros")
-                        .HasForeignKey("OscId");
+                        .HasForeignKey("OScId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("YmagiWebMvc.Models.Produto", b =>
                 {
                     b.HasOne("YmagiWebMvc.Models.Fornecedor", "Fornecedor")
                         .WithMany()
-                        .HasForeignKey("FornecedorId");
+                        .HasForeignKey("FornecedorId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("YmagiWebMvc.Models.Membro")
                         .WithMany("Produtos")
@@ -372,30 +385,35 @@ namespace YmagiWebMvc.Migrations
                 {
                     b.HasOne("YmagiWebMvc.Models.Fornecedor", "Fornecedor")
                         .WithMany()
-                        .HasForeignKey("FornecedorId");
+                        .HasForeignKey("FornecedorId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("YmagiWebMvc.Models.Membro", "Membro")
                         .WithMany("Recebimentos")
-                        .HasForeignKey("MembroId");
+                        .HasForeignKey("MembroId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("YmagiWebMvc.Models.Osc")
                         .WithMany("Recebimentos")
                         .HasForeignKey("OscId");
 
                     b.HasOne("YmagiWebMvc.Models.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioId");
+                        .WithMany("Recebimentos")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("YmagiWebMvc.Models.Usuario", b =>
                 {
-                    b.HasOne("YmagiWebMvc.Models.Membro")
+                    b.HasOne("YmagiWebMvc.Models.Membro", "Membro")
                         .WithMany("Usuarios")
-                        .HasForeignKey("MembroId");
+                        .HasForeignKey("MembroId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("YmagiWebMvc.Models.Osc")
+                    b.HasOne("YmagiWebMvc.Models.Osc", "Osc")
                         .WithMany("Usuarios")
-                        .HasForeignKey("OscId");
+                        .HasForeignKey("OscId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

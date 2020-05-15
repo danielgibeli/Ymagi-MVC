@@ -9,8 +9,8 @@ using YmagiWebMvc.Models;
 namespace YmagiWebMvc.Migrations
 {
     [DbContext(typeof(YmagiWebMvcContext))]
-    [Migration("20200509232159_Nova")]
-    partial class Nova
+    [Migration("20200514235440_tabelateste")]
+    partial class tabelateste
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -54,6 +54,10 @@ namespace YmagiWebMvc.Migrations
 
                     b.Property<int?>("OscId");
 
+                    b.Property<int?>("ProdutoId");
+
+                    b.Property<double>("Quantidade");
+
                     b.Property<int>("Status");
 
                     b.Property<double>("Total");
@@ -66,6 +70,8 @@ namespace YmagiWebMvc.Migrations
 
                     b.HasIndex("OscId");
 
+                    b.HasIndex("ProdutoId");
+
                     b.HasIndex("UsuarioId");
 
                     b.ToTable("Entrega");
@@ -77,6 +83,8 @@ namespace YmagiWebMvc.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Bairro");
+
+                    b.Property<string>("Cep");
 
                     b.Property<string>("Cidade");
 
@@ -95,11 +103,13 @@ namespace YmagiWebMvc.Migrations
 
                     b.Property<int?>("FornecedorId");
 
+                    b.Property<string>("InscEstadual");
+
                     b.Property<int?>("MembroId");
 
                     b.Property<string>("NomeFantasia");
 
-                    b.Property<int>("Numero");
+                    b.Property<string>("Numero");
 
                     b.Property<string>("RazaoSocial");
 
@@ -122,40 +132,39 @@ namespace YmagiWebMvc.Migrations
 
                     b.Property<string>("Bairro");
 
-                    b.Property<int>("Cep");
+                    b.Property<string>("Cep");
 
                     b.Property<string>("Cidade");
 
                     b.Property<string>("Complemento");
 
-                    b.Property<int>("Cpf");
+                    b.Property<string>("Cpf");
 
                     b.Property<DateTime>("DataCadastro");
 
-                    b.Property<string>("Email")
-                        .IsRequired();
+                    b.Property<string>("Email");
+
+                    b.Property<string>("Endereco");
 
                     b.Property<string>("Estado");
 
                     b.Property<string>("EstadoCivil");
 
-                    b.Property<int>("Filhos");
+                    b.Property<string>("Filhos");
 
                     b.Property<DateTime>("Nascimento");
 
                     b.Property<string>("Nome");
 
-                    b.Property<int>("Numero");
+                    b.Property<string>("Numero");
 
                     b.Property<int?>("OscId");
 
-                    b.Property<int>("Rg");
-
-                    b.Property<string>("Endereco");
+                    b.Property<string>("Rg");
 
                     b.Property<string>("Sexo");
 
-                    b.Property<int>("Telefone");
+                    b.Property<string>("Telefone");
 
                     b.HasKey("Id");
 
@@ -170,6 +179,8 @@ namespace YmagiWebMvc.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Bairro");
+
+                    b.Property<string>("Cep");
 
                     b.Property<string>("Cidade");
 
@@ -187,7 +198,7 @@ namespace YmagiWebMvc.Migrations
 
                     b.Property<string>("Nome");
 
-                    b.Property<int>("Numero");
+                    b.Property<string>("Numero");
 
                     b.Property<string>("Observacao");
 
@@ -221,6 +232,8 @@ namespace YmagiWebMvc.Migrations
 
                     b.Property<string>("Unidade");
 
+                    b.Property<int?>("UsuarioId");
+
                     b.Property<double>("ValorTotal");
 
                     b.Property<double>("ValorUnit");
@@ -230,6 +243,8 @@ namespace YmagiWebMvc.Migrations
                     b.HasIndex("FornecedorId");
 
                     b.HasIndex("MembroId");
+
+                    b.HasIndex("UsuarioId");
 
                     b.ToTable("Produto");
                 });
@@ -247,11 +262,19 @@ namespace YmagiWebMvc.Migrations
 
                     b.Property<int?>("OscId");
 
+                    b.Property<int?>("ProdutoId");
+
+                    b.Property<double>("Quantidade");
+
                     b.Property<int>("Status");
 
                     b.Property<double>("Total");
 
                     b.Property<int?>("UsuarioId");
+
+                    b.Property<double>("ValorTotal");
+
+                    b.Property<double>("ValorUnit");
 
                     b.HasKey("Id");
 
@@ -260,6 +283,8 @@ namespace YmagiWebMvc.Migrations
                     b.HasIndex("MembroId");
 
                     b.HasIndex("OscId");
+
+                    b.HasIndex("ProdutoId");
 
                     b.HasIndex("UsuarioId");
 
@@ -273,20 +298,26 @@ namespace YmagiWebMvc.Migrations
 
                     b.Property<string>("Bairro");
 
-                    b.Property<int>("Cep");
+                    b.Property<string>("Cep");
 
                     b.Property<string>("Cidade");
 
                     b.Property<string>("Complemento");
 
-                    b.Property<int>("Cpf");
+                    b.Property<string>("Cpf");
 
                     b.Property<DateTime>("DataCadastro");
 
                     b.Property<string>("Email")
                         .IsRequired();
 
+                    b.Property<string>("Endereco");
+
                     b.Property<string>("Estado");
+
+                    b.Property<string>("EstadoCivil");
+
+                    b.Property<string>("Filhos");
 
                     b.Property<int?>("MembroId");
 
@@ -294,15 +325,16 @@ namespace YmagiWebMvc.Migrations
 
                     b.Property<string>("Nome");
 
-                    b.Property<int>("Numero");
-
-                    b.Property<string>("Observacao");
+                    b.Property<string>("Numero");
 
                     b.Property<int?>("OscId");
 
-                    b.Property<string>("Endereco");
+                    b.Property<string>("Rg");
 
-                    b.Property<int>("Telefone");
+                    b.Property<string>("Sexo");
+
+                    b.Property<string>("Telefone")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -320,13 +352,13 @@ namespace YmagiWebMvc.Migrations
                         .HasForeignKey("MembroId");
 
                     b.HasOne("YmagiWebMvc.Models.Usuario", "Usuario")
-                        .WithMany("Doacaos")
+                        .WithMany()
                         .HasForeignKey("UsuarioId");
                 });
 
             modelBuilder.Entity("YmagiWebMvc.Models.Entrega", b =>
                 {
-                    b.HasOne("YmagiWebMvc.Models.Membro", "Membro")
+                    b.HasOne("YmagiWebMvc.Models.Membro")
                         .WithMany("Entregas")
                         .HasForeignKey("MembroId");
 
@@ -334,8 +366,12 @@ namespace YmagiWebMvc.Migrations
                         .WithMany("Entregas")
                         .HasForeignKey("OscId");
 
-                    b.HasOne("YmagiWebMvc.Models.Usuario", "Usuario")
+                    b.HasOne("YmagiWebMvc.Models.Produto", "Produto")
                         .WithMany()
+                        .HasForeignKey("ProdutoId");
+
+                    b.HasOne("YmagiWebMvc.Models.Usuario", "Usuario")
+                        .WithMany("Entregas")
                         .HasForeignKey("UsuarioId");
                 });
 
@@ -366,6 +402,10 @@ namespace YmagiWebMvc.Migrations
                     b.HasOne("YmagiWebMvc.Models.Membro")
                         .WithMany("Produtos")
                         .HasForeignKey("MembroId");
+
+                    b.HasOne("YmagiWebMvc.Models.Usuario", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId");
                 });
 
             modelBuilder.Entity("YmagiWebMvc.Models.Recebimento", b =>
@@ -374,7 +414,7 @@ namespace YmagiWebMvc.Migrations
                         .WithMany()
                         .HasForeignKey("FornecedorId");
 
-                    b.HasOne("YmagiWebMvc.Models.Membro", "Membro")
+                    b.HasOne("YmagiWebMvc.Models.Membro")
                         .WithMany("Recebimentos")
                         .HasForeignKey("MembroId");
 
@@ -382,15 +422,19 @@ namespace YmagiWebMvc.Migrations
                         .WithMany("Recebimentos")
                         .HasForeignKey("OscId");
 
-                    b.HasOne("YmagiWebMvc.Models.Usuario", "Usuario")
+                    b.HasOne("YmagiWebMvc.Models.Produto", "Produto")
                         .WithMany()
+                        .HasForeignKey("ProdutoId");
+
+                    b.HasOne("YmagiWebMvc.Models.Usuario", "Usuario")
+                        .WithMany("Recebimentos")
                         .HasForeignKey("UsuarioId");
                 });
 
             modelBuilder.Entity("YmagiWebMvc.Models.Usuario", b =>
                 {
-                    b.HasOne("YmagiWebMvc.Models.Membro")
-                        .WithMany("Usuarios")
+                    b.HasOne("YmagiWebMvc.Models.Membro", "Membro")
+                        .WithMany()
                         .HasForeignKey("MembroId");
 
                     b.HasOne("YmagiWebMvc.Models.Osc")

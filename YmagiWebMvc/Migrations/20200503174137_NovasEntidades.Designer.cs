@@ -126,7 +126,7 @@ namespace YmagiWebMvc.Migrations
 
                     b.Property<string>("Observacao");
 
-                    b.Property<string>("Rua");
+                    b.Property<string>("Endereco");
 
                     b.Property<int>("Telefone");
 

@@ -9,10 +9,6 @@ namespace YmagiWebMvc.Models
     public class Fornecedor
     {
         public int Id { get; set; }
-
-        public Membro Membro { get; set; }
-
-        [Display(Name = "Razão Social")]
         public string RazaoSocial { get; set; }
 
         [Display(Name = "Nome Fantasia")]
@@ -20,19 +16,22 @@ namespace YmagiWebMvc.Models
 
         [Display(Name = "CNPJ")]
         public string Cnpj { get; set; }
+        public string InscEstadual { get; set; }
+        public string Contato { get; set; }
 
-        [Display(Name = "Endereço: Rua, Avenida, etc...")]
+
+        public string Cep { get; set; }
+
         public string Endereço { get; set; }
 
         [Display(Name = "Número")]
-        public int Numero { get; set; }
+        public string Numero { get; set; }
 
         public string Complemento { get; set; }
         public string Bairro { get; set; }
         public string Cidade { get; set; }
         public string Estado { get; set; }
 
-        public string Contato { get; set; }
 
         [Required(ErrorMessage = "{0} obrigatório")]
         [DataType(DataType.PhoneNumber)]
@@ -42,6 +41,9 @@ namespace YmagiWebMvc.Models
         [EmailAddress(ErrorMessage = "{0} digite um email válido!")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+        public Membro Membro { get; set; }
+
+
 
         [Display(Name = "Fornecedores")]
         public ICollection<Fornecedor> Fornecedores { get; set; } = new List<Fornecedor>();
@@ -51,7 +53,7 @@ namespace YmagiWebMvc.Models
         }
 
         public Fornecedor(int id, Membro membro,string razaoSocial, string nomeFantasia,
-            string cnpj, string endereço, int numero, string complemento,
+            string cnpj, string cep, string endereço, string     numero, string complemento,
             string bairro, string cidade, string estado, string contato,
             string telefone, string email)
         {
@@ -60,6 +62,7 @@ namespace YmagiWebMvc.Models
             RazaoSocial = razaoSocial;
             NomeFantasia = nomeFantasia;
             Cnpj = cnpj;
+            Cep = cep;
             Endereço = endereço;
             Numero = numero;
             Complemento = complemento;

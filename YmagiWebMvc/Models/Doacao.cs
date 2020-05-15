@@ -17,11 +17,14 @@ namespace YmagiWebMvc.Models
         public Membro Membro { get; set; }
         public Usuario Usuario { get; set; }
 
+
+
         public Doacao()
         {
         }
 
-        public Doacao(int id, DateTime data, double total, DoacoesStatus status, Membro membro, Usuario usuario)
+        public Doacao(int id, DateTime data, double total, DoacoesStatus status, 
+            Membro membro, Usuario usuario)
         {
             Id = id;
             Data = data;

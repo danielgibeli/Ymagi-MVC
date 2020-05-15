@@ -17,6 +17,7 @@ namespace YmagiWebMvc.Models
         public double ValorTotal { get; set; }
         public DateTime Date { get; set; }
         public Fornecedor Fornecedor { get; set; }
+        public Usuario Usuario { get; set; }
 
 
         public Produto()
@@ -24,7 +25,7 @@ namespace YmagiWebMvc.Models
         }
 
         public Produto(int id, string nome, string unidade, double quantidade,
-            double total, double valorUnit, double valorTotal, DateTime date, Fornecedor fornecedor)
+            double total, double valorUnit, double valorTotal, DateTime date, Fornecedor fornecedor )
         {
             Id = id;
             Nome = nome;

@@ -12,22 +12,22 @@ namespace YmagiWebMvc.Controllers
 {
     public class MembrosController : Controller
     {
-        private readonly MembrosService _membrosService;
+        private readonly MembroService _membroService;
         private readonly OscService _oscService;
 
-        public MembrosController(MembrosService membrosService, OscService oscService)
+        public MembrosController(MembroService membroService, OscService oscService)
         {
-            _membrosService = membrosService;
+            _membroService = membroService;
             _oscService = oscService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var list = await _membrosService.FindAllAsync();
+            var list = await _membroService.FindAllAsync();
             return View(list);
         }
 
-        public async Task<IActionResult> Cadastro()
+        public async Task<IActionResult> Create()
         {
             var oscs = await _oscService.FindAllAsync();
             var viewModel = new OscFormViewModel { Oscs = oscs };
@@ -36,16 +36,16 @@ namespace YmagiWebMvc.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Cadastro(Membro membro)
+        public async Task<IActionResult> Create(Membro membro)
         {
             if (!ModelState.IsValid)
             {
-                var osc = await _oscService.FindAllAsync();
-                var viewModel = new OscFormViewModel { Membro = membro, Oscs = osc };
+                var oscs = await _oscService.FindAllAsync();
+                var viewModel = new OscFormViewModel { Membro = membro, Oscs = oscs };
                 return View(viewModel);
             }                                                                                                                                           
 
-            await _membrosService.InsertAsync(membro);
+            await _membroService.InsertAsync(membro);
             return RedirectToAction(nameof(Index));
         }
 
@@ -56,7 +56,7 @@ namespace YmagiWebMvc.Controllers
                 return RedirectToAction(nameof(Error), new { message = "Id não fornecido!" });
             }
 
-            var obj = await _membrosService.FindByIdAsync(id.Value);
+            var obj = await _membroService.FindByIdAsync(id.Value);
             if (obj == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id não encontrado!" });
@@ -70,7 +70,7 @@ namespace YmagiWebMvc.Controllers
         {
             try
             {
-                await _membrosService.RemoveAsync(id);
+                await _membroService.RemoveAsync(id);
                 return RedirectToAction(nameof(Index));
             }
             catch (IntegrityException e)
@@ -86,7 +86,7 @@ namespace YmagiWebMvc.Controllers
                 return RedirectToAction(nameof(Error), new { message = "Id não fornecido!" });
             }
 
-            var obj = await _membrosService.FindByIdAsync(id.Value);
+            var obj = await _membroService.FindByIdAsync(id.Value);
             if (obj == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id não encontrado!" });
@@ -101,14 +101,14 @@ namespace YmagiWebMvc.Controllers
                 return RedirectToAction(nameof(Error), new { message = "Id não fornecido!" });
             }
 
-            var obj = await _membrosService.FindByIdAsync(id.Value);
+            var obj = await _membroService.FindByIdAsync(id.Value);
             if (obj == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id não encontrado!" });
             }
 
-            List<Osc> osc = await _oscService.FindAllAsync();
-            OscFormViewModel viewModel = new OscFormViewModel { Membro = obj, Oscs = osc };
+            List<Osc> oscs = await _oscService.FindAllAsync();
+            OscFormViewModel viewModel = new OscFormViewModel { Membro = obj, Oscs = oscs };
             return View(viewModel);
         }
 
@@ -118,8 +118,8 @@ namespace YmagiWebMvc.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var osc = await _oscService.FindAllAsync();
-                var viewModel = new OscFormViewModel { Membro = membro, Oscs = osc };
+                var oscs = await _oscService.FindAllAsync();
+                var viewModel = new OscFormViewModel { Membro = membro, Oscs = oscs };
                 return View(viewModel);
             }
 
@@ -129,7 +129,7 @@ namespace YmagiWebMvc.Controllers
             }
             try
             {
-                await _membrosService.UpdateAsync(membro);
+                await _membroService.UpdateAsync(membro);
                 return RedirectToAction(nameof(Index));
             }
             catch (ApplicationException e)

@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace YmagiWebMvc.Services
 {
-    public class MembrosService
+    public class MembroService
     {
         private readonly YmagiWebMvcContext _context;
 
-        public MembrosService(YmagiWebMvcContext context)
+        public MembroService(YmagiWebMvcContext context)
         {
             _context = context;
         }

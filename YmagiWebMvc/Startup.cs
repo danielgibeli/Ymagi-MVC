@@ -46,15 +46,6 @@ namespace YmagiWebMvc
 
             services.AddScoped<SeendingService>();
 
-            services.AddScoped<MembrosService>();
-
-            services.AddScoped<OscService>();
-
-            services.AddScoped<DoacaosService>();
-
-            services.AddScoped<UsuariosService>();
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
