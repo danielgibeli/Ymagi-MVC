@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using YmagiWebMvc.Models;
 
 namespace YmagiWebMvc.Models
 {
-    public class YmagiWebMvcContext : DbContext
+    public class YmagiWebMvcContext : IdentityDbContext
     {
         public YmagiWebMvcContext (DbContextOptions<YmagiWebMvcContext> options)
             : base(options)
