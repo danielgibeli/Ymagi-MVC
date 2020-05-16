@@ -45,6 +45,9 @@ namespace YmagiWebMvc
                         builder.MigrationsAssembly("YmagiWebMvc")));
 
             services.AddScoped<SeendingService>();
+            services.AddScoped<OscService>();
+            services.AddScoped<MembroService>();
+            services.AddScoped<UsuariosService>();
 
         }
 

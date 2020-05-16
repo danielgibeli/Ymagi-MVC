@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YmagiWebMvc.Models;
 
 namespace YmagiWebMvc.Migrations
 {
     [DbContext(typeof(YmagiWebMvcContext))]
-    partial class YmagiWebMvcContextModelSnapshot : ModelSnapshot
+    [Migration("20200515035051_AcertoTabela")]
+    partial class AcertoTabela
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,11 +34,9 @@ namespace YmagiWebMvc.Migrations
 
                     b.Property<int>("Status");
 
+                    b.Property<double>("Total");
+
                     b.Property<int?>("UsuarioId");
-
-                    b.Property<double>("ValorTotal");
-
-                    b.Property<double>("ValorUnit");
 
                     b.HasKey("Id");
 
@@ -233,6 +233,8 @@ namespace YmagiWebMvc.Migrations
                     b.Property<double>("Quantidade");
 
                     b.Property<int>("Status");
+
+                    b.Property<double>("Total");
 
                     b.Property<int?>("UsuarioId");
 

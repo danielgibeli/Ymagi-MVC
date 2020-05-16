@@ -46,9 +46,6 @@ namespace YmagiWebMvc.Models
         public string Observacao { get; set; }
 
         public ICollection<Membro> Membros { get; set; } = new List<Membro>();
-        public ICollection<Usuario> Usuarios { get; set; } = new List<Usuario>();
-        public ICollection<Entrega> Entregas { get; set; } = new List<Entrega>();
-        public ICollection<Recebimento> Recebimentos { get; set; } = new List<Recebimento>();
 
 
         public Osc()
@@ -82,30 +79,10 @@ namespace YmagiWebMvc.Models
             Membros.Add(membros);
         }
 
-        public void AddUsuarios(Usuario usuarios)
-        {
-            Usuarios.Add(usuarios);
-        }
 
         public void RemMembros(Membro membros)
         {
             Membros.Remove(membros);
         }
-
-        public void RemUsuarios(Usuario usuarios)
-        {
-            Usuarios.Remove(usuarios);
-        }
-
-        public double TotalEntregasOsc(DateTime inicial, DateTime final)
-        {
-            return Membros.Sum(membros => membros.TotalEntregasMembros(inicial, final));
-        }
-
-        public double TotalRecebimentosOsc(DateTime inicial, DateTime final)
-        {
-            return Membros.Sum(membros => membros.TotalRecebimentosMembros(inicial, final));
-        }
-
     }
 }

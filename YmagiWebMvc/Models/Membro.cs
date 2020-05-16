@@ -39,11 +39,12 @@ namespace YmagiWebMvc.Models
         public string Cidade { get; set; }
         public string Estado { get; set; }
         public Osc Osc { get; set; }
- 
-        public ICollection<Fornecedor> Fornecedores { get; set; } = new List<Fornecedor>();
+
         public ICollection<Produto> Produtos { get; set; } = new List<Produto>();
         public ICollection<Entrega> Entregas { get; set; } = new List<Entrega>();
+        public ICollection<Fornecedor> Fornecedores { get; set; } = new List<Fornecedor>();
         public ICollection<Recebimento> Recebimentos { get; set; } = new List<Recebimento>();
+
 
         public Membro()
         {
@@ -117,12 +118,12 @@ namespace YmagiWebMvc.Models
 
         public double TotalEntregasMembros(DateTime inicial, DateTime final)
         {
-            return Entregas.Where(ent => ent.Data >= inicial && ent.Data <= final).Sum(ent => ent.Total);
+            return Entregas.Where(ent => ent.Data >= inicial && ent.Data <= final).Sum(ent => ent.ValorTotal);
         }
 
         public double TotalRecebimentosMembros(DateTime inicial, DateTime final)
         {
-            return Recebimentos.Where(rec => rec.Data >= inicial && rec.Data <= final).Sum(rec => rec.Total);
+            return Recebimentos.Where(rec => rec.Data >= inicial && rec.Data <= final).Sum(rec => rec.ValorTotal);
         }
     }
 }

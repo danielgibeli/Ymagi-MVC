@@ -43,10 +43,10 @@ namespace YmagiWebMvc.Models
         public string Email { get; set; }
         public Membro Membro { get; set; }
 
+        public ICollection<Produto> Produtos { get; set; } = new List<Produto>();
+        public ICollection<Recebimento> Recebimentos { get; set; } = new List<Recebimento>();
 
 
-        [Display(Name = "Fornecedores")]
-        public ICollection<Fornecedor> Fornecedores { get; set; } = new List<Fornecedor>();
 
         public Fornecedor()
         {

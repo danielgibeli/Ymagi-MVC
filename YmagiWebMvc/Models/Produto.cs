@@ -18,6 +18,11 @@ namespace YmagiWebMvc.Models
         public DateTime Date { get; set; }
         public Fornecedor Fornecedor { get; set; }
         public Usuario Usuario { get; set; }
+        public Membro Membro { get; set; }
+
+
+        public ICollection<Recebimento> Recebimentos { get; set; } = new List<Recebimento>();
+        public ICollection<Entrega> Entregas { get; set; } = new List<Entrega>();
 
 
         public Produto()
@@ -25,7 +30,7 @@ namespace YmagiWebMvc.Models
         }
 
         public Produto(int id, string nome, string unidade, double quantidade,
-            double total, double valorUnit, double valorTotal, DateTime date, Fornecedor fornecedor )
+            double total, double valorUnit, double valorTotal, DateTime date, Fornecedor fornecedor, Usuario usuario, Membro membro )
         {
             Id = id;
             Nome = nome;
@@ -36,6 +41,8 @@ namespace YmagiWebMvc.Models
             ValorTotal = valorTotal;
             Date = date;
             Fornecedor = fornecedor;
+            Usuario = usuario;
+            Membro = membro;
         }
     }
 }

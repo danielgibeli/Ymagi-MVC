@@ -23,7 +23,6 @@ namespace YmagiWebMvc.Data
                 _context.Produto.Any() ||
                 _context.Fornecedor.Any() ||
                 _context.Recebimento.Any() ||
-                _context.Doacao.Any()||
                 _context.Entrega.Any()
                 )
             {
@@ -58,18 +57,15 @@ namespace YmagiWebMvc.Data
             Fornecedor for2 = new Fornecedor(2, mem1, "Copapar", "Copapar", "123456789", "Cep", "Holanda",
                "1054", "casa", "Vl Mariana", "Ribeirao Preto", "SP", "Daniel", "999945651", "daniel@ymagi.com");
 
-            Produto p1 = new Produto(1, "Arroz", "KG", 10, 10, 15, 15, new DateTime(1985, 07, 03), for1);
-            Produto p2 = new Produto(2, "Feijão", "KG", 10, 10, 15, 15, new DateTime(1985, 07, 03), for2);
+            Produto p1 = new Produto(1, "Arroz", "KG", 10, 10, 15, 15, new DateTime(1985, 07, 03), for1, us2, mem1);
+            Produto p2 = new Produto(2, "Feijão", "KG", 10, 10, 15, 15, new DateTime(1985, 07, 03), for2, us1, mem2);
 
-            Entrega en1 = new Entrega(1, new DateTime(2020, 09, 05), 100, us1,2,DoacoesStatus.Programado);
-            Entrega en2 = new Entrega(2, new DateTime(2020, 08, 03), 100, us2,2, DoacoesStatus.Cancelado);
-            Entrega en3 = new Entrega(3, new DateTime(2020, 10, 11), 100, us2,1, DoacoesStatus.Realizado);
+            Entrega en1 = new Entrega(1, us1, p1, mem2, new DateTime(2020, 09, 05), 100, 100,DoacoesStatus.Programado);
+            Entrega en2 = new Entrega(2, us2, p2, mem1, new DateTime(2020, 08, 03), 100, 100, DoacoesStatus.Cancelado);
+            Entrega en3 = new Entrega(3, us1, p2, mem1, new DateTime(2020, 10, 11), 100, 100, DoacoesStatus.Realizado);
 
-            Recebimento rec1 = new Recebimento(1, new DateTime(2020, 09, 05), 200, us1, mem1,for1,DoacoesStatus.Programado);
-            Recebimento rec2 = new Recebimento(2, new DateTime(2020, 02, 12), 150, us1, mem1,for2,DoacoesStatus.Realizado);
-
-            Doacao doa1 = new Doacao(1, new DateTime(2020, 02, 10), 100, DoacoesStatus.Realizado, mem1, us2);
-            Doacao doa2 = new Doacao(2, new DateTime(2020, 08, 03), 100, DoacoesStatus.Realizado, mem2, us1);
+            Recebimento rec1 = new Recebimento(1, p2, 10, 10, 10, 1000, new DateTime(2020, 09, 05), us1, mem1,for1,DoacoesStatus.Programado);
+            Recebimento rec2 = new Recebimento(2, p1, 2, 2, 4, 8, new DateTime(2020, 02, 12), us1, mem1,for2,DoacoesStatus.Realizado);
 
 
             _context.Osc.AddRange(osc1, osc2, osc3);
@@ -77,9 +73,8 @@ namespace YmagiWebMvc.Data
             _context.Usuario.AddRange(us1, us2);
             _context.Fornecedor.AddRange(for1, for2);
             _context.Produto.AddRange(p1, p2);
-            _context.Entrega.AddRange(en1, en2);
+            _context.Entrega.AddRange(en1, en2, en3);
             _context.Recebimento.AddRange(rec1, rec2);
-            _context.Doacao.AddRange(doa1, doa2);
 
             _context.SaveChanges();
 

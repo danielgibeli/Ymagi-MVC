@@ -15,7 +15,6 @@ namespace YmagiWebMvc.Models
         }
 
         public DbSet<Osc> Osc { get; set; }
-        public DbSet<Doacao> Doacao { get; set; }
         public DbSet<Membro> Membro { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Produto> Produto { get; set; }
